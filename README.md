@@ -1,12 +1,24 @@
-INSTALL
+# vue-composition-test-utils
+Simple vue composition api testing utilities
 
+[![Actions Status](https://github.com/ariesjia/vue-composition-test-utils/workflows/Node%20CI/badge.svg)](https://github.com/ariesjia/vue-composition-test-utils/actions)
+[![NPM](https://img.shields.io/npm/v/vue-composition-test-utils.svg)](https://www.npmjs.com/package/vue-composition-test-utils)
+[![license](https://badgen.net/badge/license/MIT/blue)](https://github.com/ariesjia/vue-composition-test-utils/blob/master/LICENSE)
+
+
+## Install
+```bash
 // use yarn
 yarn add vue-composition-test-utils -D
 // use npm
 npm install vue-composition-test-utils -D
+```
 
-DEMO CODE 
+## Demo
 
+#### Code
+
+```js
 import { ref } from 'vue'
 
 export function useCounter(initialValue = 0) {
@@ -14,9 +26,11 @@ export function useCounter(initialValue = 0) {
   const inc = (delta = 1) => (count.value += delta)
   return { count, inc }
 }
+```
 
-RUN 
+#### Test
 
+```js
 import { mountComposition, nextTick } from 'vue-composition-test-utils'
 
 test('should get current composition result', function() {
@@ -38,8 +52,19 @@ test('should render template though template option', async function() {
   expect(wrapper.html()).toEqual('hello world 1')
 });
 
-API
+```
 
+
+#### vue2 + @vue/composition-api demo
+[https://github.com/ariesjia/vue-composition-test-utils/blob/master/packages/test-vue2/test/simple.test.js](https://github.com/ariesjia/vue-composition-test-utils/blob/master/packages/test-vue2/test/simple.test.js)
+
+
+#### vue3 demo
+[https://github.com/ariesjia/vue-composition-test-utils/blob/master/packages/test-vue3/test/simple.test.js](https://github.com/ariesjia/vue-composition-test-utils/blob/master/packages/test-vue3/test/simple.test.js)
+
+## API
+
+```typescript
 import {GlobalMountOptions} from "@vue/test-utils/dist/types";
 import {ComponentOptionsWithoutProps} from "vue";
 
@@ -66,21 +91,10 @@ export declare const mountComposition: <R, Props>(callback: () => R, options?: M
 };
 
 export const nextTick: (fn?: () => void) => Promise<void>
+```
 
-<table>
-    <tr>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-3ea20e447ac621a161e395fb53ccc683d84.png"/></td>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-a6f23cf9a371a30165e135eff6d9ae89a9d.png"/></td>
-		<td><img src="https://oscimg.oschina.net/oscnet/up-ff5f62016bf6624c1ff27eee57499dccd44.png"/></td>
-    </tr>
-	<tr>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-b9a582fdb26ec69d407fabd044d2c8494df.png"/></td>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-96427ee08fca29d77934cfc8d1b1a637cef.png"/></td>
-		<td><img src="https://oscimg.oschina.net/oscnet/up-5fdadc582d24cccd7727030d397b63185a3.png"/></td>
-    </tr>
-	<tr>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-0a36797b6bcc50c36d40c3c782665b89efc.png"/></td>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-d77995cc00687cedd00d5ac7d68a07ea276.png"/></td>
-		<td><img src="https://oscimg.oschina.net/oscnet/up-fa8f5ab20becf59b4b38c1b92a9989e7109.png"/></td>
-    </tr>
-</table>
+
+### Thanks
+
+This project is inspired by [vue-demi](https://github.com/antfu/vue-demi)
+
